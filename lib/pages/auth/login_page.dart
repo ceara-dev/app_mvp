@@ -28,121 +28,141 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        child: GestureDetector(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.all(15),
-            color: Colors.white,
-            child: Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                 
-      
-                    const SizedBox(height: 80),
-                    SizedBox(
-                      width: 2000,
-                      height: 210,
-                      child: Image.asset('assets/logo.png'),
-                    ),
-                    Text(
-                      descricaoEscola ?? '',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10, right: 5, top: 40),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Código de acesso',
-                          style: TextStyle(fontSize: 13, color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      child: CustomCodigoField(
-                        textColor: Colors.grey,
-                        controller: _codigoController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor, informe seu código.';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10, right: 5, top: 18),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Senha de acesso',
-                          style: TextStyle(fontSize: 13, color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      child: CustomPasswordField(
-                        controller: _senhaController,
-                        textColor: Colors.grey,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor, informe sua senha.';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        width: double.infinity,
-                        child: CustomElevatedButton(
-                          isLoading: _isLoading,
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              setState(() {
-                                _isLoading = true;
-                              });
-                              
-                              MySharedPreferences mySharedPreferences = MySharedPreferences();
+      body: Stack(
+        children: [
+          /// Imagem de fundo ocupando toda a tela
+          Positioned.fill(
+            child: Image.asset(
+              'assets/fundo.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
 
-                              await mySharedPreferences.add(id: 1, name: 'Lucas', tokenApi: '88888888888');
+          /// Define a cor da StatusBar como transparente
+          AnnotatedRegion<SystemUiOverlayStyle>(
+            value:
+                const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+            child: GestureDetector(
+              child: SafeArea(
+                child: SizedBox.expand(
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Container(
+                      height: MediaQuery.of(context)
+                          .size
+                          .height, // Ocupa toda a tela
+                      padding: const EdgeInsets.all(15),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              descricaoEscola ?? '',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 10, right: 5, top: 40),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Código de acesso',
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              child: CustomCodigoField(
+                                textColor: Colors.black,
+                                controller: _codigoController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor, informe seu código.';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 10, right: 5, top: 18),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Senha de acesso',
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              child: CustomPasswordField(
+                                controller: _senhaController,
+                                textColor: Colors.black,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor, informe sua senha.';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                width: double.infinity,
+                                child: CustomElevatedButton(
+                                  isLoading: _isLoading,
+                                  onPressed: () async {
+                                    if (_formKey.currentState!.validate()) {
+                                      setState(() {
+                                        _isLoading = true;
+                                      });
 
-                              await Future.delayed(const Duration(seconds: 3), () {
-                                setState(() {
-                                  _isLoading = false;
-                                });
-                                Navigator.pushNamed(context, '/home');
-                              });
-                            }
-                          },
-                          label: 'Submit',
+                                      MySharedPreferences mySharedPreferences =
+                                          MySharedPreferences();
+
+                                      await mySharedPreferences.add(
+                                        id: 1,
+                                        name: 'Conta de demonstração',
+                                        tokenApi: '88888888888',
+                                      );
+                                      await Future.delayed(
+                                          const Duration(seconds: 3), () {
+                                        setState(() {
+                                          _isLoading = false;
+                                        });
+                                        Navigator.pushNamed(context, '/home');
+                                      });
+                                    }
+                                  },
+                                  label: 'Entrar',
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

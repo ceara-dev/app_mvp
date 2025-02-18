@@ -53,6 +53,12 @@ dependencies:
   shared_preferences: ^2.3.2
   flutter_secure_storage: ^4.2.1
   shared_preferences_storage_view_driver: ^0.1.0-dev.4
+  #zxing_widget: ^1.1.0
+  #camera: ^0.11.0+2
+  simple_barcode_scanner: ^0.3.0
+  #zxing2: ^0.2.3
+  #camera: ^0.11.0+2
+  #google_mlkit_barcode_scanning: ^0.13.0
 
 dev_dependencies:
   flutter_test:
@@ -77,7 +83,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
-  #   - images/a_dot_ham.jpeg
+    - assets/fundo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

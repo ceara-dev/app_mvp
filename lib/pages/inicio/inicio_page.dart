@@ -84,7 +84,7 @@ class _InicioPageState extends State<InicioPage> {
   @override
   Widget build(BuildContext context) {
     _configureFirebaseListeners();
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
@@ -94,14 +94,19 @@ class _InicioPageState extends State<InicioPage> {
             ElevatedButton(
               child: const Text('INITIATED'),
               onPressed: () {
-                 NotificationService().showNotification(
-                title: 'Semple title',
-                body: 'It works'
-              );
+                NotificationService()
+                    .showNotification(title: 'Semple title', body: 'It works');
               },
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/camera');
+        },
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.document_scanner_rounded, color: Colors.white),
       ),
     );
   }
