@@ -128,7 +128,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/consulta': (context) => const ConsultaPage(),
         '/agenda': (context) => const AgendaPage(),
-        '/camera': (context) => CameraPage()
+        '/camera': (context) => const BarcodeScannerPage()
       },
     );
   }

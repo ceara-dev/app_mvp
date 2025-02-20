@@ -53,9 +53,10 @@ dependencies:
   shared_preferences: ^2.3.2
   flutter_secure_storage: ^4.2.1
   shared_preferences_storage_view_driver: ^0.1.0-dev.4
+  simple_barcode_scanner: ^0.1.1
+  mobile_scanner: ^6.0.6
   #zxing_widget: ^1.1.0
   #camera: ^0.11.0+2
-  simple_barcode_scanner: ^0.3.0
   #zxing2: ^0.2.3
   #camera: ^0.11.0+2
   #google_mlkit_barcode_scanning: ^0.13.0
